@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias e Artigos - Den Denúncias</title>
+    <link href="css/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="fontawesome-free/css/all.min.css" />
+    <style>
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        .animate-slide-in-up {
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        /* Estilos para o logo */
+        @media (min-width: 768px) {
+            .logo {
+                width: 96px; /* Tamanho padrão para desktop */
+            }
+        }
+        .logo {
+            transition: transform 0.3s ease;
+            width: 85px; /* Tamanho padrão para mobile */
+            object-fit: cover;
+        }
+
+        /* Classes para o rodapé */
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos específicos do blog */
+        .article-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .pagination-link {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .pagination-link:hover:not(.active) {
+            background-color: #BFDBFE; /* blue-100 */
+            color: #1D4ED8; /* blue-700 */
+        }
+        .pagination-link.active {
+            background-color: #1D4ED8; /* blue-700 */
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col min-h-screen font-sans">
+    
+    <header class="bg-blue-800 text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2" aria-label="Den Denúncias Início">
+                <img src="img/logoDen.png" alt="Den Denúncias Logo" class="logo">
+            </a>
+
+            <ul class="hidden md:flex space-x-8 text-lg font-medium" role="menu">
+                <li role="none"><a href="index.html" class="hover:text-blue-200 transition-colors duration-200" role="menuitem">Início</a></li>
+                <li role="none"><a href="denuncia.html" class="hover:text-blue-200 transition-colors duration-200" role="menuitem">Fazer Denúncia</a></li>
+                <li role="none"><a href="como-funciona.html" class="hover:text-blue-200 transition-colors duration-200" role="menuitem">Como Funciona</a></li>
+                <li role="none"><a href="sobre.html" class="hover:text-blue-200 transition-colors duration-200" role="menuitem">Sobre Nós</a></li>
+                <li role="none"><a href="contacto.html" class="hover:text-blue-200 transition-colors duration-200" role="menuitem">Contacto</a></li>
+                <li role="none"><a href="blog.html" class="hover:text-blue-200 transition-colors duration-200" role="menuitem">Notícias</a></li>
+            </ul>
+
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none" aria-label="Abrir menu móvel" aria-expanded="false">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-700 py-2">
+            <ul class="flex flex-col items-center space-y-3 text-lg font-medium" role="menu">
+                <li role="none"><a href="index.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200" role="menuitem">Início</a></li>
+                <li role="none"><a href="denuncia.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200" role="menuitem">Fazer Denúncia</a></li>
+                <li role="none"><a href="como-funciona.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200" role="menuitem">Como Funciona</a></li>
+                <li role="none"><a href="contacto.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200" role="menuitem">Contacto</a></li>
+                <li role="none"><a href="sobre.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200" role="menuitem">Sobre Nós</a></li>
+                <li role="none"><a href="blog.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200" role="menuitem">Notícias e Artigos</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8 sm:py-12">
+        <section class="bg-white p-6 sm:p-10 rounded-xl shadow-2xl border border-gray-200 animate-fade-in mb-10">
+            <div class="text-center mb-10">
+                <i class="fas fa-newspaper text-blue-600 text-6xl mb-4 animate-scale-in" aria-hidden="true"></i>
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Notícias e Artigos Recentes</h1>
+                <p class="text-gray-700 text-lg max-w-3xl mx-auto">
+                    Mantenha-se atualizado com as últimas novidades sobre transparência, combate à corrupção, e o impacto da Den Denúncias em Moçambique.
+                </p>
+            </div>
+
+            <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <article class="bg-gray-50 rounded-lg shadow-md overflow-hidden article-card hidden">
+                    <img src="img/LogistPrime.png" alt="Combate à Corrupção em Moçambique" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">Moçambique intensifica medidas de combate à corrupção</h2>
+                        <p class="text-sm text-gray-600 mb-4">
+                            <i class="fas fa-calendar-alt mr-1"></i> 10 de Junho de 2025
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-tag mr-1"></i> Notícias, Governança
+                        </p>
+                        <p class="text-gray-700 text-base mb-4">
+                            Autoridades moçambicanas anunciam novas estratégias e parcerias para fortalecer a luta contra a corrupção em vários setores, visando maior transparência...
+                        </p>
+                        <a href="artigo-1.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                            Ler Mais <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-gray-50 rounded-lg shadow-md overflow-hidden article-card hidden">
+                    <img src="img/Construa.png" alt="Guia para Denúncia Segura" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">Guia Prático: Como Fazer uma Denúncia Segura na Den Denúncias</h2>
+                        <p class="text-sm text-gray-600 mb-4">
+                            <i class="fas fa-calendar-alt mr-1"></i> 05 de Junho de 2025
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-tag mr-1"></i> Dicas, Plataforma
+                        </p>
+                        <p class="text-gray-700 text-base mb-4">
+                            Entenda o passo a passo para utilizar a Den Denúncias de forma eficaz e garantir a segurança e confidencialidade da sua informação...
+                        </p>
+                        <a href="artigo-2.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                            Ler Mais <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-gray-50 rounded-lg shadow-md overflow-hidden article-card hidden">
+                    <img src="img/LogistPrime.png" alt="A Importância da Transparência Pública" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">Por que a Transparência é Essencial para o Desenvolvimento de Moçambique</h2>
+                        <p class="text-sm text-gray-600 mb-4">
+                            <i class="fas fa-calendar-alt mr-1"></i> 28 de Maio de 2025
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-tag mr-1"></i> Artigo, Sociedade
+                        </p>
+                        <p class="text-gray-700 text-base mb-4">
+                            Exploramos como a abertura de dados e a prestação de contas impactam diretamente no crescimento económico e social, promovendo a confiança...
+                        </p>
+                        <a href="artigo-3.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                            Ler Mais <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-gray-50 rounded-lg shadow-md overflow-hidden article-card hidden">
+                    <img src="img/Construa.png" alt="Parceria Den Denúncias" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">Den Denúncias anuncia parceria estratégica para amplificar o impacto</h2>
+                        <p class="text-sm text-gray-600 mb-4">
+                            <i class="fas fa-calendar-alt mr-1"></i> 20 de Maio de 2025
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-tag mr-1"></i> Notícias, Parceria
+                        </p>
+                        <p class="text-gray-700 text-base mb-4">
+                            Saiba mais sobre a nova colaboração que visa fortalecer a rede de denúncias e expandir o alcance da Den Denúncias...
+                        </p>
+                        <a href="artigo-4.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                            Ler Mais <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-gray-50 rounded-lg shadow-md overflow-hidden article-card hidden">
+                    <img src="img/AgroTech.png" alt="Educação e Ética" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">O Papel da Educação na Promoção da Ética e Anti-Corrupção</h2>
+                        <p class="text-sm text-gray-600 mb-4">
+                            <i class="fas fa-calendar-alt mr-1"></i> 15 de Maio de 2025
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-tag mr-1"></i> Artigo, Educação
+                        </p>
+                        <p class="text-gray-700 text-base mb-4">
+                            Discutimos como a educação pode ser uma ferramenta poderosa para formar cidadãos conscientes e combater a corrupção desde a base...
+                        </p>
+                        <a href="artigo-5.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                            Ler Mais <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-gray-50 rounded-lg shadow-md overflow-hidden article-card hidden">
+                    <img src="img/LogistPrime.png" alt="Impacto da Tecnologia" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">Tecnologia a Serviço da Transparência: O Futuro das Denúncias</h2>
+                        <p class="text-sm text-gray-600 mb-4">
+                            <i class="fas fa-calendar-alt mr-1"></i> 08 de Maio de 2025
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-tag mr-1"></i> Tecnologia, Inovação
+                        </p>
+                        <p class="text-gray-700 text-base mb-4">
+                            Uma análise sobre como a tecnologia, como a usada pela Den Denúncias, está a revolucionar a forma como as denúncias são feitas e geridas...
+                        </p>
+                        <a href="artigo-6.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                            Ler Mais <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-gray-50 rounded-lg shadow-md overflow-hidden article-card hidden">
+                    <img src="img/Construa.png" alt="Den Denúncias: Impacto nos primeiros 6 meses" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">Den Denúncias: Impacto nos primeiros 6 meses de Operação</h2>
+                        <p class="text-sm text-gray-600 mb-4">
+                            <i class="fas fa-calendar-alt mr-1"></i> 01 de Maio de 2025
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-tag mr-1"></i> Plataforma, Relatório
+                        </p>
+                        <p class="text-gray-700 text-base mb-4">
+                            Um olhar sobre os resultados e o impacto da plataforma desde seu lançamento, incluindo o número de denúncias recebidas e ações tomadas...
+                        </p>
+                        <a href="artigo-7.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                            Ler Mais <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-gray-50 rounded-lg shadow-md overflow-hidden article-card hidden">
+                    <img src="img/AgroTech.png" alt="Direitos do Denunciante" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">Conheça seus Direitos como Denunciante em Moçambique</h2>
+                        <p class="text-sm text-gray-600 mb-4">
+                            <i class="fas fa-calendar-alt mr-1"></i> 25 de Abril de 2025
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-tag mr-1"></i> Legal, Direitos
+                        </p>
+                        <p class="text-gray-700 text-base mb-4">
+                            Um artigo informativo sobre as leis e proteções existentes para quem decide denunciar irregularidades no país...
+                        </p>
+                        <a href="artigo-8.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
+                            Ler Mais <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+            <nav id="pagination-nav" class="flex justify-center items-center space-x-2" aria-label="Paginação do Blog">
+                </nav>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-auto shadow-inner">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center md:text-left">
+                <a href="index.html" class="flex items-center justify-center md:justify-start">
+                    <img src="img/logoDen.png" class="h-12 w-14">
+                    <span class="text-xl font-bold text-white">Den Denúncias</span>
+                </a>
+                <p class="text-sm leading-relaxed">
+                    Plataforma dedicada a promover a transparência e a integridade em Moçambique, oferecendo um canal seguro e confidencial para denúncias.
+                </p>
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-4">Links Rápidos</h3>
+                <ul class="space-y-2">
+                    <li><a href="denuncia.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Fazer Denúncia</a></li>
+                    <li><a href="como-funciona.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Como Funciona</a></li>
+                    <li><a href="sobre.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Sobre Nós</a></li>
+                    <li><a href="contacto.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Contacto</a></li>
+                        <li><a href="#" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Termos de Serviço</a></li>
+                </ul>
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-4">Fale Connosco</h3>
+
+                <div class="flex flex-col">
+                    <a href="#address" class="text-sm mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i> Maputo, Moçambique</a href="">
+                    <a href="mailto:info@dendenuncias.co.mz" class="text-sm mb-2"><i class="fas fa-envelope mr-2 text-blue-400"></i> info@dendenuncias.co.mz</a href="">
+                    <a href="tel:+258850492263" class="text-sm mb-4"><i class="fas fa-phone mr-2 text-blue-400"></i> +258 85 049 2263</a href="">
+                </div>
+
+                <div class="flex justify-center md:justify-start space-x-4 mt-4">
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-facebook-f text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-linkedin-in text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
+            &copy; <span id="current-year"></span> Den Denúncias. Todos os direitos reservados.
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Current Year in Footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // --- Paginação do Blog ---
+            const articlesPerPage = 6; // Número de artigos por página
+            let currentPage = 1;
+            const articlesContainer = document.getElementById('articles-container');
+            const paginationNav = document.getElementById('pagination-nav');
+            const allArticles = Array.from(articlesContainer.querySelectorAll('.article-card')); // Seleciona todos os artigos
+
+            // Esconde todos os artigos inicialmente
+            allArticles.forEach(article => article.classList.add('hidden'));
+
+            function displayArticles(page) {
+                currentPage = page;
+                const startIndex = (currentPage - 1) * articlesPerPage;
+                const endIndex = startIndex + articlesPerPage;
+
+                allArticles.forEach((article, index) => {
+                    if (index >= startIndex && index < endIndex) {
+                        article.classList.remove('hidden');
+                        // Reinicia a animação para novos artigos na página
+                        article.style.animation = 'none';
+                        void article.offsetWidth; // Trigger reflow
+                        article.style.animation = `slideInUp 0.8s ease-out forwards ${0.1 * (index % articlesPerPage)}s`;
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+                updatePaginationControls();
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Volta ao topo da página
+            }
+
+            function updatePaginationControls() {
+                paginationNav.innerHTML = ''; // Limpa os controles existentes
+                const totalPages = Math.ceil(allArticles.length / articlesPerPage);
+
+                // Botão "Anterior"
+                const prevButton = document.createElement('a');
+                prevButton.href = '#';
+                prevButton.className = 'flex items-center px-4 py-2 text-gray-700 bg-gray-200 rounded-lg transition-colors duration-200 pagination-link';
+                prevButton.innerHTML = '<i class="fas fa-arrow-left mr-2"></i> Anterior';
+                prevButton.setAttribute('aria-label', 'Página Anterior');
+                if (currentPage === 1) {
+                    prevButton.classList.add('opacity-50', 'cursor-not-allowed');
+                    prevButton.style.pointerEvents = 'none'; // Desabilita cliques
+                }
+                prevButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentPage > 1) {
+                        displayArticles(currentPage - 1);
+                    }
+                });
+                paginationNav.appendChild(prevButton);
+
+                // Botões de números das páginas
+                const maxPagesToShow = 5; // Limita o número de botões de página visíveis
+                let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+                let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+
+                if (endPage - startPage + 1 < maxPagesToShow) {
+                    startPage = Math.max(1, endPage - maxPagesToShow + 1);
+                }
+
+                if (startPage > 1) {
+                    const firstPageLink = document.createElement('a');
+                    firstPageLink.href = '#';
+                    firstPageLink.className = 'px-4 py-2 text-gray-700 bg-gray-200 rounded-lg pagination-link';
+                    firstPageLink.textContent = '1';
+                    firstPageLink.addEventListener('click', (e) => { e.preventDefault(); displayArticles(1); });
+                    paginationNav.appendChild(firstPageLink);
+                    if (startPage > 2) {
+                        const ellipsis = document.createElement('span');
+                        ellipsis.className = 'px-4 py-2 text-gray-700';
+                        ellipsis.textContent = '...';
+                        paginationNav.appendChild(ellipsis);
+                    }
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    const pageLink = document.createElement('a');
+                    pageLink.href = '#';
+                    pageLink.className = 'px-4 py-2 text-gray-700 bg-gray-200 rounded-lg pagination-link';
+                    pageLink.textContent = i;
+                    if (i === currentPage) {
+                        pageLink.classList.add('active');
+                        pageLink.setAttribute('aria-current', 'page');
+                    }
+                    pageLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        displayArticles(i);
+                    });
+                    paginationNav.appendChild(pageLink);
+                }
+
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        const ellipsis = document.createElement('span');
+                        ellipsis.className = 'px-4 py-2 text-gray-700';
+                        ellipsis.textContent = '...';
+                        paginationNav.appendChild(ellipsis);
+                    }
+                    const lastPageLink = document.createElement('a');
+                    lastPageLink.href = '#';
+                    lastPageLink.className = 'px-4 py-2 text-gray-700 bg-gray-200 rounded-lg pagination-link';
+                    lastPageLink.textContent = totalPages;
+                    lastPageLink.addEventListener('click', (e) => { e.preventDefault(); displayArticles(totalPages); });
+                    paginationNav.appendChild(lastPageLink);
+                }
+
+                // Botão "Próxima"
+                const nextButton = document.createElement('a');
+                nextButton.href = '#';
+                nextButton.className = 'flex items-center px-4 py-2 text-gray-700 bg-gray-200 rounded-lg transition-colors duration-200 pagination-link';
+                nextButton.innerHTML = 'Próxima <i class="fas fa-arrow-right ml-2"></i>';
+                nextButton.setAttribute('aria-label', 'Próxima Página');
+                if (currentPage === totalPages) {
+                    nextButton.classList.add('opacity-50', 'cursor-not-allowed');
+                    nextButton.style.pointerEvents = 'none'; // Desabilita cliques
+                }
+                nextButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentPage < totalPages) {
+                        displayArticles(currentPage + 1);
+                    }
+                });
+                paginationNav.appendChild(nextButton);
+            }
+
+            // Inicializa a primeira página
+            displayArticles(1);
+        });
+    </script>
+</body>
+</html>

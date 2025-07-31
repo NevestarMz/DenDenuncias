@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - NeveStar Plataforma de Denúncias</title>
+    <link href="css/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="fontawesome-free/css/all.min.css" />
+    <style>
+        /* Animações (mantidas do seu CSS original) */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        .animate-slide-in-up {
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        /* Estilos para o logo */
+        @media (min-width: 768px) {
+            .logo {
+                width: 96px; /* Tamanho padrão para desktop */
+            }
+        }
+        .logo {
+            transition: transform 0.3s ease;
+            width: 85px; /* Tamanho padrão para mobile */
+            object-fit: cover;
+        }
+
+        /* Classes para o rodapé */
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col min-h-screen font-sans">
+    
+    <header class="bg-blue-800 text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2" aria-label="Página Inicial NeveStar">
+                <img src="img/logoDen.png" alt="NeveStar Logo - Plataforma de Denúncias" class="logo">
+            </a>
+
+            <ul class="hidden md:flex space-x-8 text-lg font-medium">
+                <li><a href="index.html" class="hover:text-blue-200 transition-colors duration-200">Início</a></li>
+                <li><a href="denuncia.html" class="hover:text-blue-200 transition-colors duration-200">Fazer Denúncia</a></li>
+                <li><a href="como-funciona.html" class="hover:text-blue-200 transition-colors duration-200">Como Funciona</a></li>
+                <li><a href="sobre.html" class="hover:text-blue-200 transition-colors duration-200">Sobre Nós</a></li>
+                <li><a href="contacto.html" class="hover:text-blue-200 transition-colors duration-200">Contacto</a></li>
+            </ul>
+
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none" aria-label="Abrir menu móvel">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-700 py-2">
+            <ul class="flex flex-col items-center space-y-3 text-lg font-medium">
+                <li><a href="index.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Início</a></li>
+                <li><a href="denuncia.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Fazer Denúncia</a></li>
+                <li><a href="como-funciona.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Como Funciona</a></li>
+                <li><a href="sobre.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Sobre Nós</a></li>
+                <li><a href="contacto.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8 sm:py-12">
+        <section class="bg-white p-6 sm:p-10 rounded-xl shadow-2xl border border-gray-200 animate-fade-in mb-10">
+            <div class="text-center mb-8">
+                <i class="fas fa-info-circle text-blue-600 text-6xl mb-4 animate-scale-in" aria-hidden="true"></i>
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Sobre a Den Denúncias</h1>
+                <p class="text-gray-700 text-lg max-w-3xl mx-auto">
+                    Na Den Denúncias, acreditamos que a transparência e a integridade são os pilares para uma sociedade mais justa e equitativa em Moçambique. Somos uma plataforma dedicada a capacitar cidadãos e organizações, oferecendo um canal seguro e confidencial para reportar irregularidades, má conduta e corrupção.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="animate-slide-in-up delay-100">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-bullseye text-blue-500 mr-3" aria-hidden="true"></i> Nossa Missão
+                    </h2>
+                    <p class="text-gray-600 text-base leading-relaxed">
+                        Nossa missão é facilitar a denúncia de irregularidades de forma segura, anónima (se desejado) e eficaz, contribuindo ativamente para a prevenção e combate à corrupção e má conduta em diversos setores da sociedade moçambicana. Buscamos ser o elo entre a população e as autoridades competentes, garantindo que as vozes sejam ouvidas e as ações apropriadas sejam tomadas.
+                    </p>
+                </div>
+                <div class="animate-slide-in-up delay-200">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-eye text-blue-500 mr-3" aria-hidden="true"></i> Nossa Visão
+                    </h2>
+                    <p class="text-gray-600 text-base leading-relaxed">
+                        Almejamos um Moçambique onde a cultura de transparência, ética e responsabilidade seja a norma. Vemos um futuro onde os cidadãos se sintam seguros para denunciar, e as instituições atuem com prontidão e imparcialidade, promovendo um ambiente de zero tolerância à corrupção e abusos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center flex items-center justify-center">
+                    <i class="fas fa-hands-helping text-blue-500 mr-3" aria-hidden="true"></i> Nossos Valores Fundamentais
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-md animate-slide-in-up delay-300">
+                        <h3 class="text-xl font-semibold text-blue-800 mb-3 flex items-center">
+                            <i class="fas fa-shield-alt text-blue-600 mr-2" aria-hidden="true"></i> Confidencialidade
+                        </h3>
+                        <p class="text-gray-700">Garantimos a proteção rigorosa da identidade de quem denuncia, especialmente nos casos de denúncias anónimas.</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-md animate-slide-in-up delay-400">
+                        <h3 class="text-xl font-semibold text-blue-800 mb-3 flex items-center">
+                            <i class="fas fa-gavel text-blue-600 mr-2" aria-hidden="true"></i> Integridade
+                        </h3>
+                        <p class="text-gray-700">Atuamos com a mais alta ética e imparcialidade, processando cada denúncia com seriedade e objetividade.</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-md animate-slide-in-up delay-500">
+                        <h3 class="text-xl font-semibold text-blue-800 mb-3 flex items-center">
+                            <i class="fas fa-lightbulb text-blue-600 mr-2" aria-hidden="true"></i> Transparência
+                        </h3>
+                        <p class="text-gray-700">Promovemos a abertura e a prestação de contas, incentivando a visibilidade dos processos onde for possível e seguro.</p>
+                    </div>
+                     <div class="bg-blue-50 p-6 rounded-lg shadow-md animate-slide-in-up delay-600">
+                        <h3 class="text-xl font-semibold text-blue-800 mb-3 flex items-center">
+                            <i class="fas fa-handshake text-blue-600 mr-2" aria-hidden="true"></i> Colaboração
+                        </h3>
+                        <p class="text-gray-700">Acreditamos no poder da cooperação entre cidadãos e instituições para construir um futuro melhor.</p>
+                    </div>
+                     <div class="bg-blue-50 p-6 rounded-lg shadow-md animate-slide-in-up delay-700">
+                        <h3 class="text-xl font-semibold text-blue-800 mb-3 flex items-center">
+                            <i class="fas fa-heart text-blue-600 mr-2" aria-hidden="true"></i> Impacto Social
+                        </h3>
+                        <p class="text-gray-700">Nosso objetivo final é gerar um impacto positivo duradouro na sociedade moçambicana.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center pt-8 border-t border-gray-200">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Junte-se a Nós!</h2>
+                <p class="text-gray-700 text-lg max-w-3xl mx-auto mb-6">
+                    A Den Denúncias é mais do que uma plataforma; é um movimento. Sua denúncia faz a diferença e ajuda a moldar um Moçambique mais justo e próspero.
+                </p>
+                <a href="denuncia.html" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 ease-in-out transform hover:scale-105">
+                    <i class="fas fa-plus-circle mr-3" aria-hidden="true"></i> Fazer uma Denúncia Agora
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-auto shadow-inner">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center md:text-left">
+                <a href="index.html" class="flex items-center justify-center md:justify-start">
+                    <img src="img/logoDen.png" class="h-12 w-14">
+                    <span class="text-xl font-bold text-white">Den Denúncias</span>
+                </a>
+                <p class="text-sm leading-relaxed">
+                    Plataforma dedicada a promover a transparência e a integridade em Moçambique, oferecendo um canal seguro e confidencial para denúncias.
+                </p>
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-4">Links Rápidos</h3>
+                <ul class="space-y-2">
+                    <li><a href="denuncia.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Fazer Denúncia</a></li>
+                    <li><a href="como-funciona.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Como Funciona</a></li>
+                    <li><a href="sobre.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Sobre Nós</a></li>
+                    <li><a href="contacto.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Contacto</a></li>
+                        <li><a href="#" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Termos de Serviço</a></li>
+                </ul>
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-4">Fale Connosco</h3>
+
+                <div class="flex flex-col">
+                    <a href="#address" class="text-sm mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i> Maputo, Moçambique</a href="">
+                    <a href="mailto:info@dendenuncias.co.mz" class="text-sm mb-2"><i class="fas fa-envelope mr-2 text-blue-400"></i> info@dendenuncias.co.mz</a href="">
+                    <a href="tel:+258850492263" class="text-sm mb-4"><i class="fas fa-phone mr-2 text-blue-400"></i> +258 85 049 2263</a href="">
+                </div>
+
+                <div class="flex justify-center md:justify-start space-x-4 mt-4">
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-facebook-f text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-linkedin-in text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
+            &copy; <span id="current-year"></span> Den Denúncias. Todos os direitos reservados.
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Current Year in Footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

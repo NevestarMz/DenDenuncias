@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Funciona - NeveStar Plataforma de Denúncias</title>
+    <link href="css/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="fontawesome-free/css/all.min.css"  />
+    <style>
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        .animate-bounce-in {
+            animation: bounceIn 0.8s ease-out forwards;
+        }
+        .animate-slide-in-right {
+            animation: slideInRight 0.6s ease-out forwards;
+        }
+
+        .logo {
+            transition: transform 0.3s ease;
+            width: 85px; /* Tamanho padrão para mobile */
+            object-fit: cover;
+        }
+        
+        /* Estilos personalizados para o input de ficheiro (se fosse aqui) */
+        /* Classes para validação visual (se fosse aqui) */
+
+        /* Classes para o rodapé (melhor visibilidade) */
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col min-h-screen font-sans">
+    
+    <header class="bg-blue-800 text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2" aria-label="Página Inicial NeveStar">
+                <img src="img/logoDen.png" alt="NeveStar Logo - Plataforma de Denúncias" class="logo">
+            </a>
+
+            <ul class="hidden md:flex space-x-8 text-lg font-medium">
+                <li><a href="index.html" class="hover:text-blue-200 transition-colors duration-200">Início</a></li>
+                <li><a href="denuncia.html" class="hover:text-blue-200 transition-colors duration-200">Fazer Denúncia</a></li>
+                <li><a href="como-funciona.html" class="hover:text-blue-200 transition-colors duration-200">Como Funciona</a></li>
+                <li><a href="sobre.html" class="hover:text-blue-200 transition-colors duration-200">Sobre Nós</a></li>
+                <li><a href="contacto.html" class="hover:text-blue-200 transition-colors duration-200">Contacto</a></li>
+            </ul>
+
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none" aria-label="Abrir menu móvel">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-700 py-2">
+            <ul class="flex flex-col items-center space-y-3 text-lg font-medium">
+                <li><a href="index.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Início</a></li>
+                <li><a href="denuncia.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Fazer Denúncia</a></li>
+                <li><a href="como-funciona.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Como Funciona</a></li>
+                <li><a href="sobre.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Sobre Nós</a></li>
+                <li><a href="contacto.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="flex-grow container mx-auto px-4 py-12 sm:py-16">
+        <section class="bg-white p-6 sm:p-10 rounded-xl shadow-2xl border border-gray-200 animate-fade-in">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-6 text-center">Como Funciona a Plataforma de Denúncias</h1>
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                A nossa plataforma foi desenhada para ser simples, segura e transparente, garantindo que a sua denúncia seja tratada com a seriedade e confidencialidade que merece.
+            </p>
+
+            <div class="space-y-10">
+                <div class="flex flex-col md:flex-row items-center bg-gray-50 p-6 rounded-lg shadow-md animate-slide-in-right">
+                    <div class="flex-shrink-0 bg-blue-600 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:mr-6">1</div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Preencher o Formulário</h3>
+                        <p class="text-gray-700">
+                            Aceda à página "Fazer Denúncia" e preencha todos os campos obrigatórios. Seja o mais detalhado possível para nos ajudar a compreender a situação. Pode anexar fotos, vídeos ou documentos para suportar a sua denúncia.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center bg-gray-50 p-6 rounded-lg shadow-md animate-slide-in-right delay-100">
+                    <div class="flex-shrink-0 bg-blue-600 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:mr-6">2</div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Submissão Segura</h3>
+                        <p class="text-gray-700">
+                            Após preencher, clique em "Submeter Denúncia". Os seus dados serão enviados de forma criptografada para garantir a segurança. Você pode optar por manter-se anónimo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center bg-gray-50 p-6 rounded-lg shadow-md animate-slide-in-right delay-200">
+                    <div class="flex-shrink-0 bg-blue-600 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:mr-6">3</div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Análise e Acção</h3>
+                        <p class="text-gray-700">
+                            A sua denúncia será recebida e analisada por uma equipa dedicada e imparcial. Se necessário, podem ser tomadas acções apropriadas, sempre respeitando a sua confidencialidade.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center bg-gray-50 p-6 rounded-lg shadow-md animate-slide-in-right delay-300">
+                    <div class="flex-shrink-0 bg-blue-600 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold mb-4 md:mb-0 md:mr-6">4</div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Acompanhamento (se não anónimo)</h3>
+                        <p class="text-gray-700">
+                            Se você optou por fornecer informações de contacto, poderemos entrar em contacto para esclarecer detalhes ou informar sobre o andamento da denúncia, se aplicável e seguro.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="denuncia.html" class="inline-flex items-center px-8 py-4 border border-transparent text-xl font-semibold rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 ease-in-out transform hover:scale-105">
+                    <i class="fas fa-edit mr-3"></i> Iniciar a Sua Denúncia Agora
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-auto shadow-inner">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center md:text-left">
+                <a href="index.html" class="flex items-center justify-center md:justify-start">
+                    <img src="img/logoDen.png" class="h-12 w-14">
+                    <span class="text-xl font-bold text-white">Den Denúncias</span>
+                </a>
+                <p class="text-sm leading-relaxed">
+                    Plataforma dedicada a promover a transparência e a integridade em Moçambique, oferecendo um canal seguro e confidencial para denúncias.
+                </p>
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-4">Links Rápidos</h3>
+                <ul class="space-y-2">
+                    <li><a href="denuncia.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Fazer Denúncia</a></li>
+                    <li><a href="como-funciona.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Como Funciona</a></li>
+                    <li><a href="sobre.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Sobre Nós</a></li>
+                    <li><a href="contacto.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Contacto</a></li>
+                        <li><a href="#" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Termos de Serviço</a></li>
+                </ul>
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-4">Fale Connosco</h3>
+
+                <div class="flex flex-col">
+                    <a href="#address" class="text-sm mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i> Maputo, Moçambique</a href="">
+                    <a href="mailto:info@dendenuncias.co.mz" class="text-sm mb-2"><i class="fas fa-envelope mr-2 text-blue-400"></i> info@dendenuncias.co.mz</a href="">
+                    <a href="tel:+258850492263" class="text-sm mb-4"><i class="fas fa-phone mr-2 text-blue-400"></i> +258 85 049 2263</a href="">
+                </div>
+
+                <div class="flex justify-center md:justify-start space-x-4 mt-4">
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-facebook-f text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-linkedin-in text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
+            &copy; <span id="current-year"></span> Den Denúncias. Todos os direitos reservados.
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Current Year in Footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

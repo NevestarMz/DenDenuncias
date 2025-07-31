@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início - NeveStar Plataforma de Denúncias | Por um Moçambique Transparente</title>
+    <meta name="description" content="A NeveStar é a plataforma de denúncias líder em Moçambique, oferecendo um canal seguro e confidencial para reportar corrupção, fraude e má conduta. Promova a ética e a integridade com a sua voz.">
+    <meta name="keywords" content="denúncias, Moçambique, corrupção, ética, integridade, má conduta, plataforma de denúncias, anónimo, segurança, transparência, boa governação, responsabilidade social">
+    <link href="css/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="fontawesome-free/css/all.min.css" />
+    <style>
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        .animate-bounce-in {
+            animation: bounceIn 0.8s ease-out forwards;
+        }
+        .animate-slide-in-right {
+            animation: slideInRight 0.6s ease-out forwards;
+        }
+        .animate-slide-in-left {
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+
+        /* Estilos adicionais para seções */
+        .card-icon {
+            color: #2563EB; /* Blue 600 */
+        }
+        .step-icon {
+            color: #10B981; /* Green 500 */
+        }
+        
+        /* Hide scrollbar for testimonials carousel */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Responsive height for testimonials to ensure alignment */
+        .h-full-flex-col {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Ensures content pushes to top/bottom */
+        }
+
+        .logo {
+            transition: transform 0.3s ease;
+            width: 85px; /* Tamanho padrão para mobile */
+            object-fit: cover;
+        }
+
+        /* Estilo para a imagem de fundo na seção "Compromisso com Moçambique" */
+        .bg-mozambique-commitment {
+            background-image: url('img/mozambique-map-bg.png'); /* Sugestão: adicione uma imagem de fundo abstrata para a seção */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay; /* Para escurecer a imagem levemente */
+            background-color: rgba(248, 250, 252, 0.8); /* Light overlay */
+        }
+
+        /* FAQ specific styles */
+        .faq-question {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .faq-answer.active {
+            max-height: 200px; /* Adjust as needed for content length */
+            transition: max-height 0.5s ease-in;
+        }
+        .faq-question.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col min-h-screen font-sans">
+    
+    <header class="bg-blue-800 text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2" aria-label="Página Inicial NeveStar">
+                <img src="img/logoDen.png" alt="NeveStar Logo - Plataforma de Denúncias" class="logo">
+            </a>
+
+            <ul class="hidden md:flex space-x-8 text-lg font-medium">
+                <li><a href="index.html" class="hover:text-blue-200 transition-colors duration-200">Início</a></li>
+                <li><a href="denuncia.html" class="hover:text-blue-200 transition-colors duration-200">Fazer Denúncia</a></li>
+                <li><a href="como-funciona.html" class="hover:text-blue-200 transition-colors duration-200">Como Funciona</a></li>
+                <li><a href="sobre.html" class="hover:text-blue-200 transition-colors duration-200">Sobre Nós</a></li>
+                <li><a href="contacto.html" class="hover:text-blue-200 transition-colors duration-200">Contacto</a></li>
+            </ul>
+
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none" aria-label="Abrir menu móvel">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-700 py-2">
+            <ul class="flex flex-col items-center space-y-3 text-lg font-medium">
+                <li><a href="index.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Início</a></li>
+                <li><a href="denuncia.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Fazer Denúncia</a></li>
+                <li><a href="como-funciona.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Como Funciona</a></li>
+                <li><a href="sobre.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Sobre Nós</a></li>
+                <li><a href="contacto.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-12 sm:py-16">
+        <section class="text-center py-16 px-6 bg-white rounded-xl shadow-xl border border-gray-200 animate-fade-in">
+            <h1 class="text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+                Den Denúncias: A Sua Plataforma <br class="hidden sm:inline"> para um Moçambique Justo e Transparente
+            </h1>
+            <p class="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
+                Na Den Denúncias, oferecemos um canal seguro, confidencial e eficaz para que cidadãos e organizações reportem irregularidades, corrupção, fraude e má conduta. Capacitamos a sua voz para promover a ética e a integridade em todas as esferas da sociedade moçambicana.
+            </p>
+            <a href="denuncia.html" class="inline-flex items-center px-8 py-4 border border-transparent text-xl font-semibold rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 ease-in-out transform hover:scale-105">
+                <i class="fas fa-bullhorn mr-3"></i> Fazer uma Denúncia Agora
+            </a>
+        </section>
+
+        <section class="py-16">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12 animate-fade-in" style="animation-delay: 0.2s;">Porquê Escolher a Den Denúncias?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 text-center animate-slide-in-right" style="animation-delay: 0.3s;">
+                    <i class="fas fa-user-secret text-blue-600 text-5xl mb-6 card-icon"></i>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Anonimato e Confidencialidade</h3>
+                    <p class="text-gray-600">
+                        A sua identidade é a nossa prioridade. Pode denunciar de forma totalmente anónima, se assim o desejar, com a máxima proteção e segurança de todos os seus dados.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 text-center animate-slide-in-right" style="animation-delay: 0.4s;">
+                    <i class="fas fa-shield-alt text-green-600 text-5xl mb-6 card-icon"></i>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Segurança de Dados Inviolável</h3>
+                    <p class="text-gray-600">
+                        Utilizamos criptografia avançada e os mais rigorosos protocolos de segurança cibernética para proteger as suas informações, do envio à análise.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 text-center animate-slide-in-right" style="animation-delay: 0.5s;">
+                    <i class="fas fa-handshake-alt-slash text-yellow-500 text-5xl mb-6 card-icon"></i>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Impacto Real e Transformador</h3>
+                    <p class="text-gray-600">
+                        A sua denúncia não é apenas um reporte; é um passo direto para a construção de uma sociedade mais ética, justa e com boa governação em Moçambique.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-gray-50 rounded-xl shadow-inner border border-gray-200">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12 animate-fade-in" style="animation-delay: 0.6s;">Que Tipos de Irregularidades Pode Denunciar?</h2>
+            <p class="text-xl text-gray-700 mb-10 text-center max-w-3xl mx-auto animate-fade-in" style="animation-delay: 0.7s;">
+                A Den Denúncias é um canal abrangente e seguro para diversas situações que comprometem a integridade, a ética e a justiça em qualquer contexto.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center animate-slide-in-left" style="animation-delay: 0.8s;">
+                    <i class="fas fa-hand-holding-usd text-red-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Corrupção e Suborno</h3>
+                    <p class="text-gray-600 text-sm">
+                        Qualquer ato de corrupção, suborno, extorsão ou uso indevido de poder para ganho pessoal ou de terceiros.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center animate-slide-in-left" style="animation-delay: 0.9s;">
+                    <i class="fas fa-exclamation-triangle text-orange-500 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Fraude e Desvio de Fundos</h3>
+                    <p class="text-gray-600 text-sm">
+                        Reporte fraudes financeiras, desvio ou apropriação indevida de recursos públicos ou privados, e atividades ilícitas relacionadas.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center animate-slide-in-left" style="animation-delay: 1.0s;">
+                    <i class="fas fa-briefcase text-purple-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Má Conduta no Ambiente de Trabalho</h3>
+                    <p class="text-gray-600 text-sm">
+                        Situações de assédio (moral ou sexual), discriminação, abuso de autoridade e outras formas de comportamento antiético no ambiente profissional.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center animate-slide-in-left" style="animation-delay: 1.1s;">
+                    <i class="fas fa-file-alt text-teal-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Violação de Leis e Regulamentos</h3>
+                    <p class="text-gray-600 text-sm">
+                        Quebra de códigos de conduta internos, regulamentos setoriais, leis nacionais ou acordos internacionais aplicáveis.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center animate-slide-in-left" style="animation-delay: 1.2s;">
+                    <i class="fas fa-users-slash text-indigo-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Conflito de Interesses</h3>
+                    <p class="text-gray-600 text-sm">
+                        Denúncias sobre situações onde interesses pessoais ou de terceiros influenciam indevidamente decisões profissionais ou públicas.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center animate-slide-in-left" style="animation-delay: 1.3s;">
+                    <i class="fas fa-leaf text-green-600 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Danos Ambientais e Sociais</h3>
+                    <p class="text-gray-600 text-sm">
+                        Práticas que resultam em poluição, destruição ambiental ou impactos sociais negativos causados por empresas ou indivíduos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-blue-50 rounded-xl shadow-inner border border-blue-100">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12 animate-fade-in" style="animation-delay: 1.4s;">Como Funciona o Processo de Denúncia na Den Denúncias?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center animate-bounce-in" style="animation-delay: 1.5s;">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-blue-300">
+                        <i class="fas fa-pencil-alt text-blue-600 text-3xl step-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">1. Descreva a Situação</h3>
+                    <p class="text-gray-600 text-sm">
+                        Comece por detalhar a irregularidade. Forneça o máximo de informações e contexto possível para uma análise eficaz.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center animate-bounce-in" style="animation-delay: 1.6s;">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-blue-300">
+                        <i class="fas fa-paperclip text-blue-600 text-3xl step-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">2. Anexe Evidências</h3>
+                    <p class="text-gray-600 text-sm">
+                        Carregue documentos, fotos, capturas de tela, gravações de áudio ou vídeo que suportem a sua denúncia e reforcem a sua veracidade.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center animate-bounce-in" style="animation-delay: 1.7s;">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-blue-300">
+                        <i class="fas fa-user-check text-blue-600 text-3xl step-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">3. Escolha o Anonimato</h3>
+                    <p class="text-gray-600 text-sm">
+                        Tenha total controlo sobre a sua identidade. Opte por se identificar ou manter-se completamente anónimo. A sua privacidade é garantida.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center animate-bounce-in" style="animation-delay: 1.8s;">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-blue-300">
+                        <i class="fas fa-ticket-alt text-blue-600 text-3xl step-icon"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">4. Acompanhe o Caso</h3>
+                    <p class="text-gray-600 text-sm">
+                        Após o envio, receberá um código único que permitirá acompanhar o progresso e o estado da sua denúncia, de forma discreta e segura.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12 animate-fade-in" style="animation-delay: 1.9s;">Nossos Valores Fundamentais</h2>
+            <p class="text-xl text-gray-700 mb-10 text-center max-w-3xl mx-auto animate-fade-in" style="animation-delay: 2.0s;">
+                Guiamo-nos por princípios inabaláveis para assegurar que a sua denúncia é tratada com a seriedade, o respeito e a responsabilidade que merece.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 text-center animate-slide-in-left" style="animation-delay: 2.1s;">
+                    <i class="fas fa-gavel text-red-600 text-5xl mb-6 card-icon"></i>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Integridade Impecável</h3>
+                    <p class="text-gray-600">
+                        Agimos com a máxima honestidade, rigor e imparcialidade em todas as etapas do processo, garantindo que cada denúncia seja analisada de forma justa e ética.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 text-center animate-slide-in-left" style="animation-delay: 2.2s;">
+                    <i class="fas fa-heart text-purple-600 text-5xl mb-6 card-icon"></i>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Compromisso com a Justiça Social</h3>
+                    <p class="text-gray-600">
+                        O nosso compromisso é ser um canal robusto e eficaz para a promoção da justiça, da boa governação e do bem-estar social para todos os cidadãos de Moçambique.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200 text-center animate-slide-in-left" style="animation-delay: 2.3s;">
+                    <i class="fas fa-hands-helping text-teal-600 text-5xl mb-6 card-icon"></i>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Apoio e Transparência no Processo</h3>
+                    <p class="text-gray-600">
+                        Oferecemos um suporte discreto, fiável e empático, mantendo a transparência possível no tratamento das denúncias e informando sobre o seu progresso.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-blue-50 rounded-xl shadow-inner border border-blue-100 bg-mozambique-commitment">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12 animate-fade-in" style="animation-delay: 2.4s;">Nosso Compromisso com Moçambique</h2>
+            <div class="flex flex-col md:flex-row items-center gap-8 px-4">
+                <div class="md:w-1/2 text-lg text-gray-700 animate-slide-in-left" style="animation-delay: 2.5s;">
+                    <p class="mb-4">
+                        A Den Denúncias nasceu da necessidade premente de um mecanismo robusto e acessível para combater as práticas que minam o desenvolvimento e a confiança em Moçambique. Acreditamos que a transparência e a responsabilidade são os pilares de uma nação próspera e justa.
+                    </p>
+                    <p class="mb-4">
+                        A nossa missão vai além de apenas receber denúncias; trata-se de capacitar os cidadãos a serem agentes de mudança, fornecendo-lhes uma voz protegida e um canal para que a verdade prevaleça. Estamos empenhados em colaborar com instituições relevantes para garantir que cada denúncia seja investigada com a seriedade que merece.
+                    </p>
+                    <p>
+                        Juntos, podemos construir um Moçambique onde a ética e a integridade sejam a norma, e não a exceção. A sua participação é fundamental para o futuro do nosso país.
+                    </p>
+                </div>
+                <div class="md:w-1/2 flex justify-center animate-slide-in-right" style="animation-delay: 2.6s;">
+                    <img src="img/mapa mocambique.png" alt="Ilustração do mapa de Moçambique, simbolizando o alcance da plataforma de denúncias." class="w-64 h-auto">
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- Seção de Impacto Concreto -->
+        <section class="py-20 bg-gradient-to-br from-blue-900 to-indigo-950 relative overflow-hidden">
+    <div class="relative z-10 text-white text-center px-4">
+        <h2 class="text-4xl font-bold mb-6 animate-fade-in" style="animation-delay: 2.7s;">O Impacto Concreto da Sua Voz</h2>
+        <p class="text-xl mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in" style="animation-delay: 2.8s;">
+            Cada denúncia enviada através da Den Denúncias é um ato de coragem que gera mudanças reais e positivas.
+            Conheça histórias (anonimizadas para proteção) de como a sua acção, combinada com a nossa plataforma, está a transformar Moçambique.
+        </p>
+
+        <div class="relative max-w-7xl mx-auto">
+            <button id="scrollLeft" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 p-3 rounded-full shadow-lg z-20 transition-all duration-300 hidden md:flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50" aria-label="Rolar para a esquerda">
+                <i class="fas fa-chevron-left text-white text-xl"></i>
+            </button>
+            <button id="scrollRight" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-30 p-3 rounded-full shadow-lg z-20 transition-all duration-300 hidden md:flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50" aria-label="Rolar para a direita">
+                <i class="fas fa-chevron-right text-white text-xl"></i>
+            </button>
+
+            <div id="testimonials-carousel" class="flex overflow-x-auto flex-nowrap py-4 gap-x-6 scroll-smooth no-scrollbar px-4" style="scroll-snap-type: x mandatory;">
+                <div class="flex-none w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] animate-slide-in-up snap-center transform transition-all duration-300 hover:scale-105" style="animation-delay: 2.9s;">
+                    <div class="bg-blue-800 bg-opacity-70 p-8 rounded-2xl shadow-xl border border-blue-700 h-full flex flex-col justify-between text-left">
+                        <div>
+                            <i class="fas fa-quote-left text-blue-300 text-3xl mb-4"></i>
+                            <p class="text-lg italic leading-relaxed mb-4 flex-grow text-gray-100 whitespace-normal">"Denunciei uma situação de assédio no trabalho que estava a ser ignorada. Graças à Den Denúncias, o caso foi levado a sério, investigado internamente e, finalmente, resultou em medidas disciplinares justas. Senti-me seguro(a) para falar, mesmo que anonimamente."</p>
+                        </div>
+                        <p class="font-semibold text-blue-200 mt-4">- Denunciante Anónimo, Setor Privado, Maputo</p>
+                    </div>
+                </div>
+                <div class="flex-none w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] animate-slide-in-up snap-center transform transition-all duration-300 hover:scale-105" style="animation-delay: 3.0s;">
+                    <div class="bg-blue-800 bg-opacity-70 p-8 rounded-2xl shadow-xl border border-blue-700 h-full flex flex-col justify-between text-left">
+                        <div>
+                            <i class="fas fa-quote-left text-blue-300 text-3xl mb-4"></i>
+                            <p class="text-lg italic leading-relaxed mb-4 flex-grow text-gray-100 whitespace-normal">"A plataforma Den Denúncias é simples, eficaz e verdadeiramente confidencial. Reportei uma fraude na administração pública e, embora o processo seja longo, já vejo sinais de que a minha denúncia está a gerar um impacto. É uma ferramenta essencial para a transparência em Moçambique."</p>
+                        </div>
+                        <p class="font-semibold text-blue-200 mt-4">- Cidadão Ativo, Função Pública, Sofala</p>
+                    </div>
+                </div>
+                <div class="flex-none w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] animate-slide-in-up snap-center transform transition-all duration-300 hover:scale-105" style="animation-delay: 3.1s;">
+                    <div class="bg-blue-800 bg-opacity-70 p-8 rounded-2xl shadow-xl border border-blue-700 h-full flex flex-col justify-between text-left">
+                        <div>
+                            <i class="fas fa-quote-left text-blue-300 text-3xl mb-4"></i>
+                            <p class="text-lg italic leading-relaxed mb-4 flex-grow text-gray-100 whitespace-normal">"Fiquei impressionado com a seriedade e o profissionalismo da Den Denúncias. Denunciei um esquema de corrupção numa empresa e, para minha surpresa, obtive um retorno sobre a abertura de uma investigação interna. É gratificante saber que a minha voz não foi em vão."</p>
+                        </div>
+                        <p class="font-semibold text-blue-200 mt-4">- Colaborador, Setor Empresarial, Nampula</p>
+                    </div>
+                </div>
+                <div class="flex-none w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] animate-slide-in-up snap-center transform transition-all duration-300 hover:scale-105" style="animation-delay: 3.2s;">
+                    <div class="bg-blue-800 bg-opacity-70 p-8 rounded-2xl shadow-xl border border-blue-700 h-full flex flex-col justify-between text-left">
+                        <div>
+                            <i class="fas fa-quote-left text-blue-300 text-3xl mb-4"></i>
+                            <p class="text-lg italic leading-relaxed mb-4 flex-grow text-gray-100 whitespace-normal">"A confidencialidade extrema que a Den Denúncias oferece foi o fator decisivo para eu denunciar uma grave violação ambiental na minha comunidade. É fundamental ter um canal onde possamos reportar abusos sem medo de retaliação."</p>
+                        </div>
+                        <p class="font-semibold text-blue-200 mt-4">- Ativista Comunitário, Inhambane</p>
+                    </div>
+                </div>
+                <div class="flex-none w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] animate-slide-in-up snap-center transform transition-all duration-300 hover:scale-105" style="animation-delay: 3.3s;">
+                    <div class="bg-blue-800 bg-opacity-70 p-8 rounded-2xl shadow-xl border border-blue-700 h-full flex flex-col justify-between text-left">
+                        <div>
+                            <i class="fas fa-quote-left text-blue-300 text-3xl mb-4"></i>
+                            <p class="text-lg italic leading-relaxed mb-4 flex-grow text-gray-100 whitespace-normal">"Como líder comunitário, vejo na Den Denúncias uma ferramenta poderosa para combater a impunidade e fortalecer a boa governação a nível local e nacional. É uma iniciativa que Moçambique precisava."</p>
+                        </div>
+                        <p class="font-semibold text-blue-200 mt-4">- Líder Comunitário, Cabo Delgado</p>
+                    </div>
+                </div>
+                <div class="flex-none w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] animate-slide-in-up snap-center transform transition-all duration-300 hover:scale-105" style="animation-delay: 3.4s;">
+                    <div class="bg-blue-800 bg-opacity-70 p-8 rounded-2xl shadow-xl border border-blue-700 h-full flex flex-col justify-between text-left">
+                        <div>
+                            <i class="fas fa-quote-left text-blue-300 text-3xl mb-4"></i>
+                            <p class="text-lg italic leading-relaxed mb-4 flex-grow text-gray-100 whitespace-normal">"Nunca pensei que uma denúncia online pudesse ter tanto impacto. Reportei um caso de desvio de fundos em projetos locais e a resposta da Den Denúncias foi rápida e profissional. Isso me deu esperança no futuro de Moçambique."</p>
+                        </div>
+                        <p class="font-semibold text-blue-200 mt-4">- Pequeno Empreendedor, Gaza</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-12">
+            <p class="text-2xl font-bold mb-4 animate-bounce-in" style="animation-delay: 3.4s;">Mais de <span class="text-yellow-400 text-4xl">150</span> denúncias processadas com sucesso!</p>
+            <p class="text-md text-gray-200 animate-fade-in" style="animation-delay: 3.5s;">(Este número é ilustrativo e demonstra o impacto potencial e crescente da plataforma Den Denúncias em Moçambique.)</p>
+        </div>
+    </div>
+</section>
+
+        <section class="py-16 bg-white rounded-xl shadow-xl border border-gray-200">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12 animate-fade-in" style="animation-delay: 4.3s;">Perguntas Frequentes (FAQ)</h2>
+            <div class="max-w-3xl mx-auto px-4">
+                <div class="mb-4 border-b border-gray-200 pb-4">
+                    <div class="flex justify-between items-center faq-question" data-target="faq1" role="button" aria-expanded="false" tabindex="0">
+                        <h3 class="text-xl font-semibold text-gray-800">A minha denúncia é realmente anónima?</h3>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </div>
+                    <div id="faq1" class="faq-answer mt-2 text-gray-600">
+                        Sim, a Den Denúncias oferece a opção de denunciar de forma totalmente anónima. Implementamos tecnologias avançadas de criptografia e procedimentos rigorosos para garantir que a sua identidade seja protegida, a menos que decida revelá-la. Não recolhemos dados que possam identificar o denunciante sem o seu consentimento explícito.
+                    </div>
+                </div>
+
+                <div class="mb-4 border-b border-gray-200 pb-4">
+                    <div class="flex justify-between items-center faq-question" data-target="faq2" role="button" aria-expanded="false" tabindex="0">
+                        <h3 class="text-xl font-semibold text-gray-800">Como sei que a minha denúncia será investigada?</h3>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </div>
+                    <div id="faq2" class="faq-answer mt-2 text-gray-600">
+                        Todas as denúncias recebidas são avaliadas por uma equipa especializada. Casos com evidências suficientes e relevância são encaminhados às autoridades competentes ou entidades responsáveis pela investigação, conforme a natureza da irregularidade. Você pode acompanhar o status da sua denúncia através do código de acompanhamento fornecido.
+                    </div>
+                </div>
+
+                <div class="mb-4 border-b border-gray-200 pb-4">
+                    <div class="flex justify-between items-center faq-question" data-target="faq3" role="button" aria-expanded="false" tabindex="0">
+                        <h3 class="text-xl font-semibold text-gray-800">Posso anexar documentos ou fotos à minha denúncia?</h3>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </div>
+                    <div id="faq3" class="faq-answer mt-2 text-gray-600">
+                        Absolutamente! Encorajamos a anexação de quaisquer evidências que possam fortalecer a sua denúncia, como documentos, imagens, gravações de áudio ou vídeo. Isso é crucial para a investigação e aumenta as chances de sucesso da sua denúncia.
+                    </div>
+                </div>
+
+                <div class="mb-4 border-b border-gray-200 pb-4">
+                    <div class="flex justify-between items-center faq-question" data-target="faq4" role="button" aria-expanded="false" tabindex="0">
+                        <h3 class="text-xl font-semibold text-gray-800">Qual é o papel da Den Denúncias após o envio da denúncia?</h3>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </div>
+                    <div id="faq4" class="faq-answer mt-2 text-gray-600">
+                        A Den Denúncias atua como um canal seguro e confidencial para a receção e triagem das denúncias. Após a validação da informação, nós as encaminhamos para as entidades apropriadas (governamentais, judiciais, ou corporativas) e monitorizamos o progresso sempre que possível, mantendo o denunciante informado (se não for anónimo) ou através do código de acompanhamento.
+                    </div>
+                </div>
+
+                <div class="mb-4 border-b border-gray-200 pb-4">
+                    <div class="flex justify-between items-center faq-question" data-target="faq5" role="button" aria-expanded="false" tabindex="0">
+                        <h3 class="text-xl font-semibold text-gray-800">É seguro usar a plataforma em Moçambique?</h3>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                    </div>
+                    <div id="faq5" class="faq-answer mt-2 text-gray-600">
+                        Sim, a segurança dos nossos utilizadores em Moçambique é a nossa prioridade. A plataforma é construída com os mais altos padrões de segurança cibernética e privacidade de dados, em conformidade com as melhores práticas internacionais. A sua identidade e as informações da sua denúncia são estritamente protegidas.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-blue-50 rounded-xl shadow-inner border border-blue-100 text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-8 animate-fade-in" style="animation-delay: 4.4s;">Notícias e Artigos Recentes</h2>
+            <p class="text-xl text-gray-700 mb-10 max-w-3xl mx-auto animate-fade-in" style="animation-delay: 4.5s;">
+                Mantenha-se atualizado sobre as iniciativas da Den Denúncias, notícias sobre integridade em Moçambique e dicas sobre como promover a ética no seu dia-a-dia.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-left animate-slide-in-up" style="animation-delay: 4.6s;">
+                    <img src="img/blog-thumb-1.jpg" alt="Imagem de capa do artigo sobre Transparência" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">A Importância da Transparência nas Instituições Públicas</h3>
+                    <p class="text-gray-600 text-sm mb-4">Exploramos como a abertura e a clareza nas ações governamentais podem combater a corrupção e fortalecer a democracia...</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Ler Mais <i class="fas fa-arrow-right ml-1 text-sm"></i></a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-left animate-slide-in-up" style="animation-delay: 4.7s;">
+                    <img src="img/blog-thumb-2.jpg" alt="Imagem de capa do artigo sobre Ética Empresarial" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Construindo uma Cultura de Ética nas Empresas Moçambicanas</h3>
+                    <p class="text-gray-600 text-sm mb-4">Descubra as melhores práticas para implementar um código de conduta robusto e promover um ambiente de trabalho justo...</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Ler Mais <i class="fas fa-arrow-right ml-1 text-sm"></i></a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-left animate-slide-in-up" style="animation-delay: 4.8s;">
+                    <img src="img/blog-thumb-3.jpg" alt="Imagem de capa do artigo sobre o papel do cidadão" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">O Poder do Cidadão na Luta Contra a Corrupção</h3>
+                    <p class="text-gray-600 text-sm mb-4">Entenda como a sua participação ativa e o uso de plataformas como a Den Denúncias podem ser decisivos na erradicação da corrupção...</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Ler Mais <i class="fas fa-arrow-right ml-1 text-sm"></i></a>
+                </div>
+            </div>
+            <div class="mt-12">
+                <a href="blog.html" class="inline-flex items-center px-6 py-3 border border-transparent text-lg font-semibold rounded-full shadow-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 ease-in-out transform hover:scale-105 animate-bounce-in" style="animation-delay: 4.9s;">
+                    <i class="fas fa-newspaper mr-3"></i> Ver Todas as Notícias
+                </a>
+            </div>
+        </section>
+
+        <section class="py-16 bg-white rounded-xl shadow-xl border border-gray-200 text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-8 animate-fade-in" style="animation-delay: 5.0s;">Quer Ir Além de Denunciar?</h2>
+            <p class="text-xl text-gray-700 mb-10 max-w-3xl mx-auto animate-fade-in" style="animation-delay: 5.1s;">
+                A Den Denúncias não é apenas um canal de denúncias; é um movimento impulsionado pela crença na integridade e na mudança positiva.
+                Descubra outras formas de se envolver e contribuir ativamente para a nossa missão em Moçambique.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-8">
+                <a href="sobre.html" class="inline-flex items-center px-8 py-4 border border-blue-600 text-xl font-semibold rounded-full shadow-lg text-blue-600 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 ease-in-out transform hover:scale-105 animate-bounce-in" style="animation-delay: 5.2s;">
+                    <i class="fas fa-users mr-3"></i> Saiba Mais Sobre Nós
+                </a>
+                <a href="contacto.html" class="inline-flex items-center px-8 py-4 border border-transparent text-xl font-semibold rounded-full shadow-lg text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-300 ease-in-out transform hover:scale-105 animate-bounce-in" style="animation-delay: 5.3s;">
+                    <i class="fas fa-handshake mr-3"></i> Torne-se um Parceiro
+                </a>
+            </div>
+        </section>
+
+        <section class="py-16 text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-8 animate-fade-in" style="animation-delay: 5.4s;">Pronto para Fazer a Diferença Hoje?</h2>
+            <p class="text-xl text-gray-700 mb-10 max-w-2xl mx-auto animate-fade-in" style="animation-delay: 5.5s;">
+                A sua acção é a chave para construir um futuro mais ético, transparente e justo para todos em Moçambique.
+                Não hesite, a sua voz importa e tem o poder de gerar mudanças significativas.
+            </p>
+            <a href="denuncia.html" class="inline-flex items-center px-10 py-5 border border-transparent text-2xl font-bold rounded-full shadow-lg text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 ease-in-out transform hover:scale-105 animate-bounce-in" style="animation-delay: 5.6s;">
+                <i class="fas fa-gavel mr-4"></i> Denuncie Já e Contribua!
+            </a>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-auto shadow-inner">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center md:text-left">
+                <a href="index.html" class="flex items-center justify-center md:justify-start">
+                    <img src="img/logoDen.png" class="h-12 w-14">
+                    <span class="text-xl font-bold text-white">Den Denúncias</span>
+                </a>
+                <p class="text-sm leading-relaxed">
+                    Plataforma dedicada a promover a transparência e a integridade em Moçambique, oferecendo um canal seguro e confidencial para denúncias.
+                </p>
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-4">Links Rápidos</h3>
+                <ul class="space-y-2">
+                    <li><a href="denuncia.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Fazer Denúncia</a></li>
+                    <li><a href="como-funciona.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Como Funciona</a></li>
+                    <li><a href="sobre.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Sobre Nós</a></li>
+                    <li><a href="contacto.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Contacto</a></li>
+                        <li><a href="#" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Termos de Serviço</a></li>
+                </ul>
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-4">Fale Connosco</h3>
+
+                <div class="flex flex-col">
+                    <a href="#address" class="text-sm mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i> Maputo, Moçambique</a href="">
+                    <a href="mailto:info@dendenuncias.co.mz" class="text-sm mb-2"><i class="fas fa-envelope mr-2 text-blue-400"></i> info@dendenuncias.co.mz</a href="">
+                    <a href="tel:+258850492263" class="text-sm mb-4"><i class="fas fa-phone mr-2 text-blue-400"></i> +258 85 049 2263</a href="">
+                </div>
+
+                <div class="flex justify-center md:justify-start space-x-4 mt-4">
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-facebook-f text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-linkedin-in text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
+            &copy; <span id="current-year"></span> Den Denúncias. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Current Year in Footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Testimonials Carousel Logic
+            const carousel = document.getElementById('testimonials-carousel');
+            const scrollLeftBtn = document.getElementById('scrollLeft');
+            const scrollRightBtn = document.getElementById('scrollRight');
+
+            if (carousel && scrollLeftBtn && scrollRightBtn) {
+                const getScrollAmount = () => {
+                    const firstCard = carousel.querySelector('.flex-none');
+                    return firstCard ? firstCard.offsetWidth + 32 : carousel.offsetWidth; 
+                };
+
+                scrollLeftBtn.addEventListener('click', () => {
+                    carousel.scrollBy({
+                        left: -getScrollAmount(),
+                        behavior: 'smooth'
+                    });
+                });
+
+                scrollRightBtn.addEventListener('click', () => {
+                    carousel.scrollBy({
+                        left: getScrollAmount(),
+                        behavior: 'smooth'
+                    });
+                });
+
+                const checkScrollButtons = () => {
+                    const scrollEndTolerance = 5; 
+                    scrollLeftBtn.classList.toggle('hidden', carousel.scrollLeft <= scrollEndTolerance);
+                    scrollRightBtn.classList.toggle('hidden', (carousel.scrollLeft + carousel.offsetWidth) >= (carousel.scrollWidth - scrollEndTolerance));
+                };
+
+                checkScrollButtons();
+                carousel.addEventListener('scroll', checkScrollButtons);
+                window.addEventListener('resize', checkScrollButtons);
+            }
+
+            // FAQ Accordion Logic
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const targetId = question.dataset.target;
+                    const answer = document.getElementById(targetId);
+                    const isActive = question.classList.contains('active');
+
+                    // Close all open answers first
+                    document.querySelectorAll('.faq-question').forEach(q => {
+                        q.classList.remove('active');
+                        document.getElementById(q.dataset.target).classList.remove('active');
+                    });
+
+                    // Toggle current question/answer
+                    if (!isActive) {
+                        question.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

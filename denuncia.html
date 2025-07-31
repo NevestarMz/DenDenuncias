@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazer Denúncia - NeveStar Plataforma de Denúncias</title>
+    <link href="css/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="fontawesome-free/css/all.min.css"  />
+    <style>
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        .animate-bounce-in {
+            animation: bounceIn 0.8s ease-out forwards;
+        }
+        .animate-slide-in-right {
+            animation: slideInRight 0.6s ease-out forwards;
+        }
+
+        /* Estilos personalizados para o input de ficheiro */
+        .file-input-label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            border: 2px dashed #a7b5d1;
+            border-radius: 0.5rem;
+            background-color: #f0f4f8;
+            color: #4b5563;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            gap: 0.5rem;
+        }
+        .file-input-label:hover {
+            background-color: #e0e7ff;
+            border-color: #6366f1;
+            color: #3730a3;
+        }
+        .file-input:focus + .file-input-label {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.45);
+            border-color: #6366f1;
+        }
+        .file-input {
+            display: none;
+        }
+
+        /* Classes para validação visual */
+        .is-invalid {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.45) !important;
+        }
+
+        /* Classes para o rodapé */
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos para o logo */
+        @media (min-width: 768px) {
+            .logo {
+                width: 96px; /* Tamanho padrão para desktop */
+            }
+        }
+        .logo {
+            transition: transform 0.3s ease;
+            width: 85px; /* Tamanho padrão para mobile */
+            object-fit: cover;
+        }
+    </style>
+</head> 
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col min-h-screen font-sans">
+    
+    <header class="bg-blue-800 text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2" aria-label="Página Inicial NeveStar">
+                <img src="img/logoDen.png" alt="NeveStar Logo - Plataforma de Denúncias" class="logo">
+            </a>
+
+            <ul class="hidden md:flex space-x-8 text-lg font-medium">
+                <li><a href="index.html" class="hover:text-blue-200 transition-colors duration-200">Início</a></li>
+                <li><a href="denuncia.html" class="hover:text-blue-200 transition-colors duration-200">Fazer Denúncia</a></li>
+                <li><a href="como-funciona.html" class="hover:text-blue-200 transition-colors duration-200">Como Funciona</a></li>
+                <li><a href="sobre.html" class="hover:text-blue-200 transition-colors duration-200">Sobre Nós</a></li>
+                <li><a href="contacto.html" class="hover:text-blue-200 transition-colors duration-200">Contacto</a></li>
+            </ul>
+
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none" aria-label="Abrir menu móvel">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-700 py-2">
+            <ul class="flex flex-col items-center space-y-3 text-lg font-medium">
+                <li><a href="index.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Início</a></li>
+                <li><a href="denuncia.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Fazer Denúncia</a></li>
+                <li><a href="como-funciona.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Como Funciona</a></li>
+                <li><a href="sobre.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Sobre Nós</a></li>
+                <li><a href="contacto.html" class="block w-full text-center py-2 px-4 hover:bg-blue-600 transition-colors duration-200">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6">
+        <div id="denuncia-form-section" class="bg-white p-6 sm:p-10 rounded-xl shadow-2xl w-full max-w-2xl border border-gray-200 animate-fade-in transform translate-y-0 opacity-100 transition-all duration-500">
+            <div class="text-center mb-8">
+                <i class="fas fa-bullhorn text-blue-600 text-6xl mb-4 animate-bounce-in"></i>
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-2">Fazer Nova Denúncia</h1>
+                <p class="text-gray-600 text-lg">Preencha os campos abaixo com as informações da sua denúncia. Os campos marcados com * são obrigatórios.</p>
+            </div>
+
+            <form id="denunciaForm" class="space-y-6">
+                <div id="feedbackMessage" class="hidden p-4 rounded-lg text-sm font-medium" role="alert"></div>
+
+                <div>
+                    <label for="tipoDenuncia" class="block text-sm font-medium text-gray-700 mb-2">
+                        Tipo de Denúncia <span class="text-red-500">*</span>
+                    </label>
+                    <select id="tipoDenuncia" name="tipoDenuncia" required aria-required="true"
+                        class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm appearance-none pr-8 transition-colors duration-200">
+                        <option value="">Selecione o tipo de denúncia</option>
+                        <option value="Corrupção">Corrupção</option>
+                        <option value="Fraude">Fraude</option>
+                        <option value="Assédio">Assédio (Moral/Sexual)</option>
+                        <option value="Discriminação">Discriminação</option>
+                        <option value="Má Conduta">Má Conduta Profissional</option>
+                        <option value="Má Conduta">Crimes contra Humanidade</option>
+                        <option value="Má Conduta">Abuso de Poder</option>
+                        <option value="Má Conduta">Tráfigo de Drogas/Orgãos Humanos</option>
+                        <option value="Outro">Outro (especificar na descrição)</option>
+                    </select>
+                    <p id="tipoDenunciaError" class="hidden text-red-500 text-xs mt-1">Por favor, selecione o tipo de denúncia.</p>
+                </div>
+
+                <div>
+                    <label for="descricao" class="block text-sm font-medium text-gray-700 mb-2">
+                        Descrição Detalhada da Denúncia <span class="text-red-500">*</span>
+                    </label>
+                    <textarea id="descricao" name="descricao" rows="7" required aria-required="true"
+                        class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm resize-y transition-colors duration-200"
+                        placeholder="Descreva o incidente com o máximo de detalhes possível, incluindo:
+- O que aconteceu?
+- Quem esteve envolvido?
+- Onde e quando (data/hora aproximada)?
+- Há testemunhas ou provas?
+- Quais foram as consequências?"></textarea>
+                    <p id="descricaoError" class="hidden text-red-500 text-xs mt-1">A descrição da denúncia é obrigatória.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="dataIncidente" class="block text-sm font-medium text-gray-700 mb-2">
+                            Data do Incidente <span class="text-red-500">*</span>
+                        </label>
+                        <input type="date" id="dataIncidente" name="dataIncidente" required aria-required="true"
+                            class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors duration-200">
+                        <p id="dataIncidenteError" class="hidden text-red-500 text-xs mt-1">Por favor, insira a data do incidente.</p>
+                    </div>
+                    <div>
+                        <label for="horaIncidente" class="block text-sm font-medium text-gray-700 mb-2">
+                            Hora Aproximada do Incidente (Opcional)
+                        </label>
+                        <input type="time" id="horaIncidente" name="horaIncidente"
+                            class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors duration-200">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="localIncidente" class="block text-sm font-medium text-gray-700 mb-2">
+                        Local do Incidente (Ex: Cidade, Bairro, Endereço Específico) <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="localIncidente" name="localIncidente" required aria-required="true"
+                        class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors duration-200"
+                        placeholder="Ex: Maputo, Bairro da Polana, Rua da Denúncia, Nº 123">
+                    <p id="localIncidenteError" class="hidden text-red-500 text-xs mt-1">O local do incidente é obrigatório.</p>
+                </div>
+
+                <div>
+                    <label for="anexos" class="block text-sm font-medium text-gray-700 mb-2">
+                        Anexar Provas (Fotos, Vídeos, Documentos - Opcional)
+                    </label>
+                    <input type="file" id="anexos" name="anexos" multiple accept="image/*,video/*,application/pdf"
+                        class="file-input" aria-describedby="file_input_help">
+                    <label for="anexos" class="file-input-label">
+                        <i class="fas fa-cloud-upload-alt text-xl"></i> Clique para selecionar ficheiros ou arraste-os aqui.
+                    </label>
+                    <p class="mt-1 text-xs text-gray-500" id="file_input_help">Tipos suportados: Imagens, Vídeos, PDFs. Máx. 5MB por ficheiro.</p>
+                    <div id="fileList" class="mt-2 text-sm text-gray-700 space-y-1"></div>
+                </div>
+
+                <div class="border-t border-gray-200 pt-6 mt-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Suas Informações (Opcional e Confidencial)</h3>
+                    <p class="text-gray-600 text-sm mb-4">Pode optar por submeter esta denúncia de forma **anónima**. Se quiser ser contactado para esclarecimentos, preencha os campos abaixo. A sua identidade será protegida.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="nomeDenunciante" class="block text-sm font-medium text-gray-700 mb-2">Seu Nome Completo</label>
+                            <input type="text" id="nomeDenunciante" name="nomeDenunciante"
+                                class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors duration-200"
+                                placeholder="Nome e Sobrenome (Opcional)">
+                        </div>
+                        <div>
+                            <label for="contactoDenunciante" class="block text-sm font-medium text-gray-700 mb-2">Email ou Telefone</label>
+                            <input type="text" id="contactoDenunciante" name="contactoDenunciante"
+                                class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors duration-200"
+                                placeholder="Seu email ou número de telefone (Opcional)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <button type="submit" id="submitButton"
+                        class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-lg text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 ease-in-out">
+                        <i class="fas fa-paper-plane mr-3"></i> Submeter Denúncia
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="confirmation-section" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50">
+            <div class="bg-white p-6 sm:p-10 rounded-xl shadow-2xl w-full max-w-md text-center border border-gray-200 transform scale-95 opacity-0">
+                <i class="fas fa-check-circle text-green-600 text-7xl mb-6"></i>
+                <h1 class="text-3xl font-extrabold text-gray-900 mb-4">Denúncia Recebida com Sucesso!</h1>
+                <p class="text-gray-700 text-lg mb-8">
+                    Agradecemos a sua contribuição para um ambiente mais justo e transparente.
+                    A sua denúncia foi submetida e será analisada com a máxima confidencialidade pela nossa equipa.
+                </p>
+                <div class="space-y-4">
+                    <button type="button" id="newDenunciaButton" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200 ease-in-out">
+                        <i class="fas fa-arrow-left mr-2"></i> Fazer Nova Denúncia
+                    </button>
+                    <a href="index.html" class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        <i class="fas fa-home mr-2"></i> Ir para o Início
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-auto shadow-inner">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center md:text-left">
+                <a href="index.html" class="flex items-center justify-center md:justify-start">
+                    <img src="img/logoDen.png" class="h-12 w-14">
+                    <span class="text-xl font-bold text-white">Den Denúncias</span>
+                </a>
+                <p class="text-sm leading-relaxed">
+                    Plataforma dedicada a promover a transparência e a integridade em Moçambique, oferecendo um canal seguro e confidencial para denúncias.
+                </p>
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-4">Links Rápidos</h3>
+                <ul class="space-y-2">
+                    <li><a href="denuncia.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Fazer Denúncia</a></li>
+                    <li><a href="como-funciona.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Como Funciona</a></li>
+                    <li><a href="sobre.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Sobre Nós</a></li>
+                    <li><a href="contacto.html" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Contacto</a></li>
+                        <li><a href="#" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-sm hover:text-blue-400 footer-link transition-colors duration-200">Termos de Serviço</a></li>
+                </ul>
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-lg font-semibold text-white mb-4">Fale Connosco</h3>
+
+                <div class="flex flex-col">
+                    <a href="#address" class="text-sm mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i> Maputo, Moçambique</a href="">
+                    <a href="mailto:info@dendenuncias.co.mz" class="text-sm mb-2"><i class="fas fa-envelope mr-2 text-blue-400"></i> info@dendenuncias.co.mz</a href="">
+                    <a href="tel:+258850492263" class="text-sm mb-4"><i class="fas fa-phone mr-2 text-blue-400"></i> +258 85 049 2263</a href="">
+                </div>
+
+                <div class="flex justify-center md:justify-start space-x-4 mt-4">
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-facebook-f text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200"><i class="fab fa-linkedin-in text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
+            &copy; <span id="current-year"></span> Den Denúncias. Todos os direitos reservados.
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Current Year in Footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // --- Lógica do Formulário de Denúncia (apenas para denuncia.html) ---
+            const form = document.getElementById('denunciaForm');
+            if (form) { // Garante que este código só roda na página com o formulário
+                const feedbackMessage = document.getElementById('feedbackMessage');
+                const fileInput = document.getElementById('anexos');
+                const fileListDisplay = document.getElementById('fileList');
+                const submitButton = document.getElementById('submitButton');
+                const formSection = document.getElementById('denuncia-form-section');
+                const confirmationSection = document.getElementById('confirmation-section');
+                const newDenunciaButton = document.getElementById('newDenunciaButton');
+
+                // Mapeamento de campos para mensagens de erro
+                const errorMessages = {
+                    tipoDenuncia: 'Por favor, selecione o tipo de denúncia.',
+                    descricao: 'A descrição da denúncia é obrigatória.',
+                    dataIncidente: 'Por favor, insira a data do incidente.',
+                    localIncidente: 'O local do incidente é obrigatório.'
+                };
+
+                // Função para mostrar mensagens de feedback
+                function showFeedback(message, type = 'error') {
+                    feedbackMessage.textContent = message;
+                    feedbackMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+                    feedbackMessage.classList.add(
+                        type === 'error' ? 'bg-red-100' : 'bg-green-100',
+                        type === 'error' ? 'text-red-700' : 'text-green-700'
+                    );
+                    feedbackMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                // Função para limpar as mensagens de feedback
+                function hideFeedback() {
+                    feedbackMessage.classList.add('hidden');
+                    feedbackMessage.textContent = '';
+                }
+
+                // Função para exibir mensagem de erro específica do campo
+                function showError(fieldId, message) {
+                    const field = document.getElementById(fieldId);
+                    const errorP = document.getElementById(fieldId + 'Error');
+                    field.classList.add('is-invalid');
+                    if (errorP) {
+                        errorP.textContent = message;
+                        errorP.classList.remove('hidden');
+                    }
+                }
+
+                // Função para limpar erro específico do campo
+                function clearError(fieldId) {
+                    const field = document.getElementById(fieldId);
+                    const errorP = document.getElementById(fieldId + 'Error');
+                    field.classList.remove('is-invalid');
+                    if (errorP) {
+                        errorP.classList.add('hidden');
+                        errorP.textContent = '';
+                    }
+                }
+
+                // Gerir seleção de ficheiros e pré-visualização/lista
+                fileInput.addEventListener('change', () => {
+                    fileListDisplay.innerHTML = ''; // Limpa a lista anterior
+                    const maxFileSizeMB = 5;
+                    let filesTooLarge = false;
+
+                    if (fileInput.files.length > 0) {
+                        Array.from(fileInput.files).forEach(file => {
+                            const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2); // Tamanho em MB
+                            const fileItem = document.createElement('p');
+                            fileItem.classList.add('flex', 'items-center', 'text-gray-700');
+                            
+                            let iconClass = 'fas fa-file'; // Ícone genérico
+                            let textColorClass = 'text-gray-700';
+
+                            if (file.type.startsWith('image/')) {
+                                iconClass = 'fas fa-image';
+                                textColorClass = 'text-blue-500';
+                            } else if (file.type.startsWith('video/')) {
+                                iconClass = 'fas fa-video';
+                                textColorClass = 'text-purple-500';
+                            } else if (file.type === 'application/pdf') {
+                                iconClass = 'fas fa-file-pdf';
+                                textColorClass = 'text-red-500';
+                            }
+
+                            if (file.size > (maxFileSizeMB * 1024 * 1024)) {
+                                fileItem.innerHTML = `<i class="${iconClass} mr-2 ${textColorClass}"></i> <span class="text-red-500">❌ ${file.name} (${fileSizeMB} MB - Grande demais!)</span>`;
+                                filesTooLarge = true;
+                            } else {
+                                fileItem.innerHTML = `<i class="${iconClass} mr-2 ${textColorClass}"></i> ${file.name} (${fileSizeMB} MB)`;
+                            }
+                            fileListDisplay.appendChild(fileItem);
+                        });
+                    }
+                    if (filesTooLarge) {
+                        showFeedback(`Alguns ficheiros excedem o tamanho máximo de ${maxFileSizeMB} MB. Por favor, remova-os.`, 'error');
+                    } else {
+                        hideFeedback(); // Limpa feedback se o problema de tamanho foi resolvido
+                    }
+                });
+
+                // Lógica de Submissão do Formulário
+                form.addEventListener('submit', async function(event) {
+                    event.preventDefault(); // Impede o envio padrão do formulário
+                    hideFeedback(); // Limpa mensagens anteriores
+                    submitButton.disabled = true; // Desabilita o botão para evitar múltiplos cliques
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i> A Submeter...'; // Feedback de carregamento
+
+                    // --- Validação Aprimorada dos Campos Obrigatórios ---
+                    const fieldsToValidate = [
+                        { id: 'tipoDenuncia', value: document.getElementById('tipoDenuncia').value },
+                        { id: 'descricao', value: document.getElementById('descricao').value.trim() },
+                        { id: 'dataIncidente', value: document.getElementById('dataIncidente').value },
+                        { id: 'localIncidente', value: document.getElementById('localIncidente').value.trim() }
+                    ];
+
+                    let isValid = true;
+                    fieldsToValidate.forEach(field => {
+                        if (!field.value) {
+                            showError(field.id, errorMessages[field.id]);
+                            isValid = false;
+                        } else {
+                            clearError(field.id);
+                        }
+                    });
+
+                    // Validação de tamanho de ficheiros
+                    const maxFileSizeMB = 5;
+                    let filesTooLarge = false;
+                    Array.from(fileInput.files).forEach(file => {
+                        if (file.size > (maxFileSizeMB * 1024 * 1024)) {
+                            filesTooLarge = true;
+                        }
+                    });
+
+                    if (filesTooLarge) {
+                        showFeedback(`Alguns ficheiros excedem o tamanho máximo de ${maxFileSizeMB} MB. Por favor, remova-os.`, 'error');
+                        isValid = false; // Falha na validação se houver ficheiros grandes
+                    }
+
+                    if (!isValid) {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = '<i class="fas fa-paper-plane mr-3"></i> Submeter Denúncia';
+                        return; // Interrompe o envio se a validação falhar
+                    }
+
+                    // --- Lógica para Enviar a Denúncia para um Servidor (Backend) ---
+                    const formData = new FormData();
+                    formData.append('tipoDenuncia', document.getElementById('tipoDenuncia').value);
+                    formData.append('descricao', document.getElementById('descricao').value.trim());
+                    formData.append('dataIncidente', document.getElementById('dataIncidente').value);
+                    formData.append('horaIncidente', document.getElementById('horaIncidente').value.trim());
+                    formData.append('localIncidente', document.getElementById('localIncidente').value.trim());
+                    formData.append('nomeDenunciante', document.getElementById('nomeDenunciante').value.trim());
+                    formData.append('contactoDenunciante', document.getElementById('contactoDenunciante').value.trim());
+
+                    Array.from(fileInput.files).forEach((file, index) => {
+                        formData.append(`anexos[${index}]`, file);
+                    });
+
+                    // Simulação de envio
+                    try {
+                        // Simule uma chamada de API
+                        // const response = await fetch('/api/denuncia', { method: 'POST', body: formData });
+                        // const data = await response.json();
+
+                        // if (!response.ok) {
+                        //     throw new Error(data.message || 'Erro desconhecido no servidor.');
+                        // }
+
+                        // Simulação de sucesso após um atraso
+                        await new Promise(resolve => setTimeout(resolve, 2000)); 
+                        showFeedback('Denúncia enviada com sucesso! Um momento...', 'success');
+                        
+                        // Mostrar a secção de confirmação e ocultar o formulário
+                        formSection.classList.add('hidden');
+                        confirmationSection.classList.remove('hidden');
+                        confirmationSection.querySelector('div').classList.add('animate-bounce-in'); // Trigger animation
+
+                    } catch (error) {
+                        console.error('Erro ao submeter denúncia:', error);
+                        showFeedback(error.message || 'Ocorreu um erro ao submeter a denúncia. Tente novamente.', 'error');
+                    } finally {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = '<i class="fas fa-paper-plane mr-3"></i> Submeter Denúncia';
+                    }
+                });
+
+                // Lógica para o botão "Fazer Nova Denúncia" na página de confirmação
+                newDenunciaButton.addEventListener('click', () => {
+                    confirmationSection.classList.add('hidden');
+                    formSection.classList.remove('hidden');
+                    form.reset(); // Limpa todos os campos do formulário
+                    fileListDisplay.innerHTML = ''; // Limpa a lista de ficheiros
+                    hideFeedback(); // Limpa mensagens de feedback
+                    // Limpa erros visuais de validação
+                    ['tipoDenuncia', 'descricao', 'dataIncidente', 'localIncidente'].forEach(clearError);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
